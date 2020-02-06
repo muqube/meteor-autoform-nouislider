@@ -40,6 +40,21 @@ const pick = (object, ...keys) => {
   return tmp
 }
 
+const exists = x => typeof x !== 'undefined' && x !== null
+
+const merge = (...objects) => {
+  const tmp = {}
+  objects.forEach(object => {
+    Object.keys(object).forEach(key => {
+      const value = object[key]
+      if (exists(value)) {
+        tmp[key] = value
+      }
+    })
+  })
+  return tmp
+}
+
 Template.afNoUiSlider.helpers({
   atts: function () {
     const data = Template.currentData() // get data reactively
@@ -59,11 +74,11 @@ Template.afNoUiSlider.helpers({
 })
 
 const calculateOptions = function (data) {
+  debugger
   const schemaMinMax = pick(data, 'max', 'min')
   const autoformOptions = pick(data.atts || {}, 'max', 'min', 'step', 'start', 'range')
   const noUiSliderOptions = (data.atts || {}).noUiSliderOptions
-
-  const options = Object.assign({}, schemaMinMax, autoformOptions, noUiSliderOptions)
+  const options = merge(schemaMinMax, autoformOptions, noUiSliderOptions)
 
   // Adjust data initialization based on schema type
   if (options.start === undefined) {
@@ -109,7 +124,6 @@ Template.afNoUiSlider.rendered = function () {
 
   const setup = function (c) {
     const data = Template.currentData() // get data reactively
-    debugger
     const options = calculateOptions(data)
     const sliderElem = $s[ 0 ]
 
