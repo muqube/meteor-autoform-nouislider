@@ -2,6 +2,7 @@
 
 import noUiSlider from 'nouislider'
 import 'nouislider/distribute/nouislider.css'
+import './autoform-nouislider.html'
 
 AutoForm.addInputType('noUiSlider', {
   template: 'afNoUiSlider',
@@ -74,7 +75,6 @@ Template.afNoUiSlider.helpers({
 })
 
 const calculateOptions = function (data) {
-  debugger
   const schemaMinMax = pick(data, 'max', 'min')
   const autoformOptions = pick(data.atts || {}, 'max', 'min', 'step', 'start', 'range')
   const noUiSliderOptions = (data.atts || {}).noUiSliderOptions
