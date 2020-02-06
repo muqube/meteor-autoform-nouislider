@@ -43,7 +43,7 @@ const pick = (object, ...keys) => {
 Template.afNoUiSlider.helpers({
   atts: function () {
     const data = Template.currentData() // get data reactively
-    const atts = data.atts
+    const atts = Object.assign({}, data.atts)
     atts[ 'data-type' ] = data.schemaType.name || 'Object' // fallback if type is a Schema and name becomes undefined
     if (atts[ 'class' ]) {
       atts[ 'class' ] += ' at-nouislider'
@@ -109,6 +109,7 @@ Template.afNoUiSlider.rendered = function () {
 
   const setup = function (c) {
     const data = Template.currentData() // get data reactively
+    debugger
     const options = calculateOptions(data)
     const sliderElem = $s[ 0 ]
 
