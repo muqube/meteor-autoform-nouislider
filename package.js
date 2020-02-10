@@ -2,8 +2,8 @@
 Package.describe({
   name: 'muqube:autoform-nouislider',
   summary: 'Dual value slider for autoform.',
-  version: '0.4.1',
-  git: 'https://github.com/ElevateDevelopmentAndDesign/meteor-autoform-nouislider'
+  version: '0.5.0',
+  git: 'https://github.com/muqube/meteor-autoform-nouislider'
 })
 
 Npm.depends({

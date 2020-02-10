@@ -24,7 +24,7 @@ Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autofo
         min: 30,
         autoform: {
           type: "noUiSlider",
-          step: 10,    
+          step: 10,
           noUiSlider_pipsOptions: {
             mode: 'steps',
             density: 5
@@ -53,7 +53,7 @@ Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autofo
           type: "noUiSlider",
           noUiSliderOptions: {
             step: 10
-          },      
+          },
           noUiSlider_pipsOptions: {
             mode: 'steps',
             density: 5
@@ -67,7 +67,7 @@ Adds the `noUiSlider` type to [autoform](https://github.com/aldeed/meteor-autofo
 To get a vertical slider, do `noUiSliderOptions: {orientation: 'vertical'}` and specify an exact `height` in the CSS for the `nouislider` class.
 
 ### Overridding start and range
-You can override start and range by passing the options in.  
+You can override start and range by passing the options in.
 
 Be sure that the values passed in match the format below.
 
@@ -81,20 +81,4 @@ Show a label left and/or right of the slider
 ```
 
 ## History
-This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://github.com/ElevateDev/meteor-autoform-nouislider). I forked it to make it compatible with meteor 1.3 and fix some bugs.
-
-
-## Release Notes
-
-### 0.3
-- Bug fixed: start and range options set in schema definition was overwritten
-- Removed dependency on wrapper package `rcy:nouislider`
-
-### 0.4
-- Bug fixed: "Slider was already initialized" error fixed
-
-### 0.4.1
-- Update AutoForm to 6.0.0, other dependencies also updated to recent version
-- Code is now [Javascript standard style](https://standardjs.com/)
-- Some ES5 syntax updated to ES6
-
+Refer to [HISTORY.md](HISTORY.md)

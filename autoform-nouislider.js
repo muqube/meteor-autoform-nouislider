@@ -2,6 +2,7 @@
 
 import noUiSlider from 'nouislider'
 import 'nouislider/distribute/nouislider.css'
+import './autoform-nouislider.html'
 
 AutoForm.addInputType('noUiSlider', {
   template: 'afNoUiSlider',
@@ -40,10 +41,25 @@ const pick = (object, ...keys) => {
   return tmp
 }
 
+const exists = x => typeof x !== 'undefined' && x !== null
+
+const merge = (...objects) => {
+  const tmp = {}
+  objects.forEach(object => {
+    Object.keys(object).forEach(key => {
+      const value = object[key]
+      if (exists(value)) {
+        tmp[key] = value
+      }
+    })
+  })
+  return tmp
+}
+
 Template.afNoUiSlider.helpers({
   atts: function () {
     const data = Template.currentData() // get data reactively
-    const atts = data.atts
+    const atts = Object.assign({}, data.atts)
     atts[ 'data-type' ] = data.schemaType.name || 'Object' // fallback if type is a Schema and name becomes undefined
     if (atts[ 'class' ]) {
       atts[ 'class' ] += ' at-nouislider'
@@ -62,8 +78,7 @@ const calculateOptions = function (data) {
   const schemaMinMax = pick(data, 'max', 'min')
   const autoformOptions = pick(data.atts || {}, 'max', 'min', 'step', 'start', 'range')
   const noUiSliderOptions = (data.atts || {}).noUiSliderOptions
-
-  const options = Object.assign({}, schemaMinMax, autoformOptions, noUiSliderOptions)
+  const options = merge(schemaMinMax, autoformOptions, noUiSliderOptions)
 
   // Adjust data initialization based on schema type
   if (options.start === undefined) {
