@@ -19,3 +19,8 @@ This meteor package is a fork of [elevatedevdesign:autoform-nouislider](https://
 ### 0.5
 - Update nouislider to 14.0.2
 - Removed underscore dependency
+
+### 0.5.1
+- prevent potential jump effect on reactive computations in cases, where documents are edited (update form) and a new 
+slider value has been set
+- fix start value on the slider was set to 0 when editing a document with a given value
