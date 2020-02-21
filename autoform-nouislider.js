@@ -81,7 +81,7 @@ const calculateOptions = function (data) {
   const options = merge(schemaMinMax, autoformOptions, noUiSliderOptions)
 
   // Adjust data initialization based on schema type
-  if (options.start === undefined) {
+  if (!options.start) {
     if (data.schemaType.name === 'Object') {
       if (data.value && data.value.lower) {
         options.start = [
