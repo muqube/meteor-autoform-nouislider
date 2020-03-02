@@ -2,7 +2,7 @@
 Package.describe({
   name: 'muqube:autoform-nouislider',
   summary: 'Dual value slider for autoform.',
-  version: '0.5.0',
+  version: '0.5.1',
   git: 'https://github.com/muqube/meteor-autoform-nouislider'
 })
 

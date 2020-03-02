@@ -81,7 +81,7 @@ const calculateOptions = function (data) {
   const options = merge(schemaMinMax, autoformOptions, noUiSliderOptions)
 
   // Adjust data initialization based on schema type
-  if (options.start === undefined) {
+  if (!options.start) {
     if (data.schemaType.name === 'Object') {
       if (data.value && data.value.lower) {
         options.start = [
@@ -122,10 +122,21 @@ Template.afNoUiSlider.rendered = function () {
   const template = this
   const $s = template.$('.nouislider')
 
+  let nonReactiveValue
+
   const setup = function (c) {
     const data = Template.currentData() // get data reactively
     const options = calculateOptions(data)
     const sliderElem = $s[ 0 ]
+
+    // if   we have a new computation and
+    //      we have a given value (for example by editing a saved document) and
+    //      we have already changed the value
+    // then we will use the changed value instead of the initial value
+    // to avoid a potential "jumping" effect when saving the form
+    if (typeof data.value !== 'undefined' && typeof nonReactiveValue !== 'undefined') {
+      options.start = nonReactiveValue
+    }
 
     if (sliderElem.noUiSlider) {
       sliderElem.noUiSlider.updateOptions(options, true)
@@ -140,7 +151,8 @@ Template.afNoUiSlider.rendered = function () {
         // emits a change event. Eventually AutoForm will give
         // input types the control of indicating exactly when
         // their value changes rather than relying on the change event
-        $s.parent()[ 0 ].value = JSON.stringify(sliderElem.noUiSlider.get())
+        nonReactiveValue = sliderElem.noUiSlider.get()
+        $s.parent()[ 0 ].value = JSON.stringify(nonReactiveValue)
         $s.parent().change()
         $s.data('changed', 'true')
       })
