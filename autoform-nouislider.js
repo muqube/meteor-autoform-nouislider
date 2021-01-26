@@ -46,7 +46,7 @@ const exists = x => typeof x !== 'undefined' && x !== null
 const merge = (...objects) => {
   const tmp = {}
   objects.forEach(object => {
-    Object.keys(object).forEach(key => {
+    object && Object.keys(object).forEach(key => {
       const value = object[key]
       if (exists(value)) {
         tmp[key] = value

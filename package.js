@@ -2,12 +2,12 @@
 Package.describe({
   name: 'muqube:autoform-nouislider',
   summary: 'Dual value slider for autoform.',
-  version: '0.5.1',
+  version: '0.5.2',
   git: 'https://github.com/muqube/meteor-autoform-nouislider'
 })
 
 Npm.depends({
-  'nouislider': '14.0.2',
+  'nouislider': '14.6.3',
 })
 
 Package.onUse(function (api) {
@@ -16,7 +16,7 @@ Package.onUse(function (api) {
   api.use('ecmascript')
   api.use('templating@1.0.0')
   api.use('blaze@2.0.0')
-  api.use('aldeed:autoform@4.0.0 || 5.0.0 || 6.0.0')
+  api.use('aldeed:autoform@4.0.0 || 5.0.0 || 6.0.0 || 7.0.0')
   api.addFiles([
     'autoform-nouislider.html',
     'autoform-nouislider.js',
